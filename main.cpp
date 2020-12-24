@@ -85,14 +85,26 @@ int main() {
 
 
 //Если длина слова максимальна.(‘abcad as’->’abcad’)
+    float l=0;
     char *maxw = strtok(a, " ");
-    char max[20]="";
+    char max[100]="";
     while (maxw!=NULL){
-        if (strlen(max)<strlen(maxw))
+        cout<<endl<<maxw<<strlen(maxw);
+        if (l<strlen(maxw)){
+            for (int i=0; i<100; i++) max[i]='\0';
+            cout<<"        "<<max;
             for (int i=0; i<strlen(maxw); i++) max[i]=maxw[i];
+            l=strlen(maxw);
+            cout<<l;
+        }
+        else if (strlen(maxw)==l){
+            strcat(max, " ");
+            strcat(max, maxw);
+        }
         maxw = strtok(NULL, "  .");
     }
+    
     //cout<<max;
-    fprintf(to, "Самое длинное слово с оставшейся строке: %s\n", max);
+    fprintf(to, "Слова с максимальной длиной в оставшейся строке: %s\n", max);
     
 }
